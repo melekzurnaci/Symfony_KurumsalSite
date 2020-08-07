@@ -66,11 +66,11 @@
 
                     <br>
                     <div class="col-md-2">
-                        <a href="{{ path('category_index') }}" class="btn btn-primary btn-block">Back to List</a>
+                        <a href="{{ path('admin_category_index') }}" class="btn btn-primary btn-block">Back to List</a>
                     </div>
                     <br>
                     <div class="col-md-2">
-                        <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-success">Edit</a>
+                        <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-success">Edit</a>
                     </div>
                     <br>
                     {{ include('admin/category/_delete_form.html.twig') }}

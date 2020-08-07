@@ -22,12 +22,10 @@
             <!-- ============================================================== -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h1>Create new Category</h1>
-
                     {{ include('admin/category/_form.html.twig') }}
                     <br>
                     <div class="col-md-2">
-                        <a href="{{ path('category_index') }}" class="btn btn-primary btn-block">Back to List</a>
+                        <a href="{{ path('admin_category_index') }}" class="btn btn-primary btn-block">Back to List</a>
                     </div>
                 </div>
             </div>
