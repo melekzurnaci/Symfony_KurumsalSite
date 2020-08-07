@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{% block description %}Resmi Kuruluş {% endblock %}">
+    <meta name="keywords" content="{% block keywords %}yardim,vakif,kurulus,dernek,duyuru,ilan,etkinlik{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/map.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/onion.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/controls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/util.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/map.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/onion.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/5/intl/tr_ALL/controls.js"></script></head>
+
+{% block head %} {% include('home/head.html.twig') %} {% endblock %}
+{% block stylesheet %}{% endblock %}
+</head>
+<body>
+{% block header %}{% include ('home/header.html.twig') %}{% endblock %}
+{% block sidebar %} {% endblock %}
+{% block slider %} {% endblock %}
+{% block body %} {% endblock %}
+{% block footer %}{% include ('home/footer.html.twig') %}{% endblock %}
+{% block javascripts %}{% include ('home/javascripts.html.twig') %}{% endblock %}
+
+</body>
+</html>

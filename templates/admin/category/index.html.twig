@@ -1,0 +1,66 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Category Home Page{% endblock %}
+
+{% block body %}
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Category Listesi </h2>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <table  class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Parentid</th>
+                            <th>Title</th>
+                            <th>Keywords</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.id }}</td>
+                                <td>{{ category.parentid }}</td>
+                                <td>{{ category.title }}</td>
+                                <td>{{ category.keywords }}</td>
+                                <td>{{ category.description }}</td>
+                                <td>{{ category.image }}</td>
+                                <td>{{ category.status }}</td>
+                                <td>
+                                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
+                                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="10">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('category_new') }}">Create new</a>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+    </div>
+{% endblock %}

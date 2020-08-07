@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block head %} {% include('admin/head.html.twig') %} {% endblock %}
+    </head>
+    <body>
+        {% block header %}{% include('admin/header.html.twig') %}{% endblock %}
+        {% block sidebar %}{% include('admin/sidebar.html.twig') %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}{% include('admin/footer.html.twig') %}{% endblock %}
+
+    </body>
+</html>
