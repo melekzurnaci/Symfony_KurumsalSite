@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,6 +59,16 @@ class Category
      */
     private $updated_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="category")
+     */
+    private $contents;
+
+    public function __construct()
+    {
+        $this->contents = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,6 +96,12 @@ class Category
         $this->title = $title;
 
         return $this;
+    }
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->getTitle();
+        // to show the id of the Category in the select
+        // return $this->id;
     }
 
     public function getKeywords(): ?string
@@ -154,6 +172,37 @@ class Category
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Content[]
+     */
+    public function getContents(): Collection
+    {
+        return $this->contents;
+    }
+
+    public function addContent(Content $content): self
+    {
+        if (!$this->contents->contains($content)) {
+            $this->contents[] = $content;
+            $content->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContent(Content $content): self
+    {
+        if ($this->contents->contains($content)) {
+            $this->contents->removeElement($content);
+            // set the owning side to null (unless already changed)
+            if ($content->getCategory() === $this) {
+                $content->setCategory(null);
+            }
+        }
 
         return $this;
     }

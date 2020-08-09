@@ -1,0 +1,72 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Content index{% endblock %}
+
+{% block body %}
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Category Listesi </h2>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <table  class="table table-hover">
+
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Keywords</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for content in contents %}
+                                <tr>
+                                    <td>{{ content.id }}</td>
+                                    <td>{{ content.title }}</td>
+                                    <td>{{ content.keywords }}</td>
+                                    <td>{{ content.description }}</td>
+                                    <td><img src="{{ asset('uploads/images/'~ content.image) }}" height="40"></td>
+                                    <td>{{ content.type }}</td>
+                                    <td>{{ content.status }}</td>
+                                    <td>{{ content.createdAt ? content.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>{{ content.updatedAt ? content.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_content_show', {'id': content.id}) }}">show</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_content_edit', {'id': content.id}) }}">edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <a href="{{ path('admin_content_new') }}">Create new</a>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+    </div>
+{% endblock %}
