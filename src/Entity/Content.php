@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -67,6 +69,16 @@ class Content
      */
     private $detail;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="content")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -84,6 +96,12 @@ class Content
         $this->title = $title;
 
         return $this;
+    }
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->getTitle();
+        // to show the id of the Category in the select
+        // return $this->id;
     }
 
     public function getKeywords(): ?string
@@ -190,6 +208,37 @@ class Content
     public function setDetail(?string $detail): self
     {
         $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getContent() === $this) {
+                $image->setContent(null);
+            }
+        }
 
         return $this;
     }

@@ -3,6 +3,11 @@
 {% block title %}Content index{% endblock %}
 
 {% block body %}
+
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windowFeatures) { window.open( windowURL, windowName, windowFeatures);
+        }
+    </script>
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
             <!-- ============================================================== -->
@@ -30,6 +35,7 @@
                                 <th>Description</th>
                                 <th>Image</th>
                                 <th>Type</th>
+                                <th>Gallery</th>
                                 <th>Status</th>
 {#                                <th>Created_at</th>#}
 {#                                <th>Updated_at</th>#}
@@ -45,6 +51,11 @@
                                     <td>{{ content.description }}</td>
                                     <td><img src="{{ asset('uploads/images/'~ content.image) }}" height="40"></td>
                                     <td>{{ content.type }}</td>
+                                    <td>
+                                        <a href="javascript:openWin('{{ path('admin_image_new',{'id':content.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizable=no,width=900,height=600');">
+                                            <img src="{{ asset('assets/admin/assets/img') }}/gallery.png" height="40">
+                                        </a>
+                                    </td>
                                     <td>{{ content.status }}</td>
 {#                                    <td>{{ content.createdAt ? content.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
 {#                                    <td>{{ content.updatedAt ? content.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
