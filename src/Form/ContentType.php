@@ -3,6 +3,7 @@
 namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Content;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,7 +33,12 @@ class ContentType extends AbstractType
                  ])
                  ->add('keywords')
                  ->add('description')
-
+                 ->add('detail', CKEditorType::class, array(
+                     'config' =>array(
+                         'uiColor' =>'#ffffff',
+                         //...
+                     ),
+                 ))
                  ->add('image', FileType::class,[
                      'label' => 'Category Image',
 
