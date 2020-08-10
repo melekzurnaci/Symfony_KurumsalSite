@@ -1,13 +1,8 @@
 {% extends 'homebase.html.twig' %}
 
-{#{% block title %}{{setting[0].title}}{% endblock %}#}
-{#{% block keywords %}{{setting[0].keywords}}{% endblock %}#}
-{#{% block description %}{{setting[0].description}}{% endblock %}#}
-{#{% block slider %}{% include ('home/slider.html.twig')  %}{% endblock %}#}
-
-{% block title %} Kurumsal Site {% endblock %}
-{% block keywords %}yardim,vakif,kurulus,dernek,duyuru,ilan,etkinlik {% endblock %}
-{% block description %}Resmi Kuruluş{% endblock %}
+{% block title %}{{setting[0].title}}{% endblock %}
+{% block keywords %}{{setting[0].keywords}}{% endblock %}
+{% block description %}{{setting[0].description}}{% endblock %}
 {% block slider %}{% include ('home/slider.html.twig')  %}{% endblock %}
 {% block body %}
 
