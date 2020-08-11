@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    <h1>Create new User</h1>
+
+    {{ include('user/_form.html.twig') }}
+    <div class="col-md-2">
+        <a href="{{ path('user_index') }}" class="btn-primary">back to list</a>
+    </div>
+{% endblock %}
+
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}New Content{% endblock %}#}
+
+{#{% block body %}#}
+
+{#    <!-- ============================================================== -->#}
+{#    <!-- wrapper  -->#}
+{#    <!-- ============================================================== -->#}
+{#    <div class="dashboard-wrapper">#}
+{#        <div class="container-fluid dashboard-content">#}
+{#            <div class="row">#}
+{#                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">#}
+
+{#                    <h1>Create new User</h1>#}
+
+{#                    {{ include('user/_form.html.twig') }}#}
+
+{#                    <a href="{{ path('user_index') }}">back to list</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
