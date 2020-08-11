@@ -1,16 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}New User{% endblock %}
 
-{% block body %}
-    <h1>Create new User</h1>
-
-    {{ include('admin/user/_form.html.twig') }}
-    <div class="col-md-2">
-        <a href="{{ path('admin_user_index') }}" class="btn-primary">back to list</a>
+{% block body %} <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Create new User  </h2>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    {{ include('admin/user/_form.html.twig') }}
+                    <div class="col-md-2">
+                        <a href="{{ path('admin_user_index') }}" class="btn btn-primary">back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
     </div>
 {% endblock %}
-
 
 {#{% extends 'base.html.twig' %}#}
 

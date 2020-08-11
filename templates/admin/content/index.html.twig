@@ -1,6 +1,6 @@
 {% extends 'adminbase.html.twig' %}
 
-{% block title %}Content index{% endblock %}
+{% block title %}Content List{% endblock %}
 
 {% block body %}
 
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Category Listesi </h2>
+                        <h2 class="pageheader-title">Content List </h2>
                     </div>
                 </div>
             </div>
@@ -65,6 +65,9 @@
                                     <td>
                                         <a href="{{ path('admin_content_edit', {'id': content.id}) }}" class="btn btn-success">edit</a>
                                     </td>
+                                    <td>
+                                        {{ include ('admin/content/_delete_form.html.twig') }}
+                                    </td>
 
                                 </tr>
                             {% else %}
@@ -75,7 +78,7 @@
                             </tbody>
                         </table>
 
-                        <a href="{{ path('admin_content_new') }}">Create new</a>
+                        <a href="{{ path('admin_content_new') }}" class="btn btn-primary">Create new</a>
                 </div>
             </div>
         </div>
