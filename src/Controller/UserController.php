@@ -120,8 +120,13 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
+    public function edit(Request $request, $id, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    {   //edit işleminde  id numarasının tarayıcıdan değiştrilerek başka kullanıcı bilgilerine erişilmesini engellemiş olduk.
+        $user=$this->getUser(); //GET LOGİN USER DATA
+        if($user->getId() != $id){
+            return $this->redirectToRoute('home');
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
