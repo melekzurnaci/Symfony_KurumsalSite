@@ -18,16 +18,18 @@
                             </div>
                         </div>
                         <div class="top_bar_content ml-auto">
-                            <div class="coins">
-                                <ul>
-                                    <li>BTC $10200</li>
-                                    <li>ETH $979</li>
-                                    <li>LTC $230</li>
-                                </ul>
-                            </div>
                             <div class="register_login">
                                 <div class="register"><a href="#">register</a></div>
-                                <div class="login"><a href="#">login</a></div>
+                                {% if app.user %}
+
+                                    <div class="login" ><a href="/user"><img src="{{ asset('uploads/images/' ~ app.user.image) }}" class="user-avatar-md rounded-circle" style="height: 30px">
+                                            {{ app.user.name }} {{ app.user.surname }}</a>
+                                    </div>
+                                    <br>
+                                                                        <div class="login"><a href="/logout">Logout</a></div>
+                                {% else %}
+                                    <div class="login"><a href="/loginuser">Login</a></div>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="burger">
@@ -213,78 +215,78 @@
         </div>
     </div>
 
-    <!-- Menu -->
+{#    <!-- Menu -->#}
 
-    <div class="menu">
-        <div class="menu_register_login">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="menu_register_login_content d-flex flex-row align-items-center justify-content-end">
-                            <div class="register"><a href="#">register</a></div>
-                            <div class="login"><a href="#">login</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{#    <div class="menu">#}
+{#        <div class="menu_register_login">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col">#}
+{#                        <div class="menu_register_login_content d-flex flex-row align-items-center justify-content-end">#}
+{#                            <div class="register"><a href="#">register</a></div>#}
+{#                            <div class="login"><a href="#">login</a></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 
-        </div>
-        <ul class="menu_list">
-            <li class="menu_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <a href="#">home</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="menu_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <a href="about.html">about us</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="menu_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <a href="listings.html">services</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="menu_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <a href="news.html">portfolio</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="menu_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <a href="contact.html">blog</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="menu_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <a href="contact.html">contact</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+{#        </div>#}
+{#        <ul class="menu_list">#}
+{#            <li class="menu_item">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col">#}
+{#                            <a href="#">home</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="menu_item">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col">#}
+{#                            <a href="about.html">about us</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="menu_item">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col">#}
+{#                            <a href="listings.html">services</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="menu_item">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col">#}
+{#                            <a href="news.html">portfolio</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="menu_item">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col">#}
+{#                            <a href="contact.html">blog</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="menu_item">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col">#}
+{#                            <a href="contact.html">contact</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
 </header>
-</div>
+

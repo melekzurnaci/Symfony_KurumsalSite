@@ -1,27 +1,51 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}Profile{% endblock %}
 
 {% block body %}
+    <br><br><br><br><br><br><br><br><br><br>
+    {{ include ('user/usermenu.html.twig') }}
+    <div class="container">
+        <div>
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <div class="section_subtitle"></div>
+                    <div class="section_title">Edit Profile</div>
+                </div>
+            </div>
+        </div>
+        <div class="row news_row">
+            <div class="news_item">
+                <div class="news_content">
+                    <div class="news_text">
+                        <!-- News -->
+                        <div class="col-md-10" style="display:inline-block">
+                            <div class="container" style="display: inline-block">
+                                <div class="row">
 
-<!-- ============================================================== -->
-<!-- wrapper  -->
-<!-- ============================================================== -->
+                                    <!-- News Post -->
+                                    <div class="col-lg-8 news_col">
+                                        <div class="news_post">
+                                            <div class="news_date d-flex flex-column align-items-center justify-content-center"></div>
+                                            <div class="news_content">
+                                                <div class="news_text">
+                                                    <p>
+                                                        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+                                                    </p>
+                                                    <p><a href="{{ path('user_index') }}" class="btn btn-primary btn-block">back to list</a></p>
 
-<div class="dashboard-wrapper">
-    <div class="container-fluid dashboard-content">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-            <h1>Edit User</h1>
-
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('user_index') }}" class="btn btn-primary btn-block">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <br><br>
 {% endblock %}

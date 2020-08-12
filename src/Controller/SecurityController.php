@@ -14,10 +14,13 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-//         if ($this->getUser()) {
-//             return $this->redirectToRoute('admin_admin');
-//         }
-
+        if ($this->getUser()) {
+            $user=$this->getUser(); //GET LOGIN USER DATA
+            if($user->getRoles()[0]=='ROLE_ADMIN')
+                return $this->redirectToRoute('admin_admin');
+            else
+                return $this->redirectToRoute('home');
+        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -25,6 +28,21 @@ class SecurityController extends AbstractController
 
         return $this->render('security/adminlogin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
+
+
+    /**
+     * @Route("/loginuser", name="login_user")
+     */
+    public function loginuser(AuthenticationUtils $authenticationUtils): Response
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/userlogin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
+
 
     /**
      * @Route("/admin/login", name="admin_login")

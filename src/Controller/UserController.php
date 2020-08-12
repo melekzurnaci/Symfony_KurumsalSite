@@ -21,12 +21,43 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
+        return $this->render('user/show.html.twig');
     }
+
+    /**
+     * @Route("/comments", name="user_comments", methods={"GET"})
+     */
+    public function comments(): Response
+    {
+        return $this->render('user/comments.html.twig');
+    }
+
+    /**
+     * @Route("/announcements", name="user_announcements", methods={"GET"})
+     */
+    public function announcements(): Response
+    {
+        return $this->render('user/announcements.html.twig');
+    }
+
+    /**
+     * @Route("/news", name="user_news", methods={"GET"})
+     */
+    public function news(): Response
+    {
+        return $this->render('user/news.html.twig');
+    }
+
+    /**
+     * @Route("/activities", name="user_activities", methods={"GET"})
+     */
+    public function activities(): Response
+    {
+        return $this->render('user/activities.html.twig');
+    }
+
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})

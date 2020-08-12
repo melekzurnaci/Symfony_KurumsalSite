@@ -1,0 +1,28 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}Profile{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br><br><br><br><br><br>
+    <!-- News -->
+    <div class=" contact">
+        <div class="col-lg-8">
+            {{ include ('user/usermenu.html.twig') }}
+            <div class="section_title_container text-lg-center">
+                <div class="section_title">My Comment List</div>
+            </div>
+
+            <div class="row news_row">
+                <div class="news_item">
+                    <div class="news_content">
+                        <div class="news_text">
+                            <!-- News Post -->
+My Contents
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}
