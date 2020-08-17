@@ -18,7 +18,6 @@ class ContentType extends AbstractType
     {
 
              $builder
-
                  ->add('title')
                  ->add('type', ChoiceType::class,[
                      'choices' => [

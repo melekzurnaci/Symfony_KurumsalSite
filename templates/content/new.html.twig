@@ -1,0 +1,33 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}New content{% endblock %}
+
+{% block body %}    <br><br><br><br><br><br><br><br><br><br>
+    {{ include ('user/usermenu.html.twig') }}
+    <div class="container">
+        <div>
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <div class="section_subtitle"></div>
+                    <div class="section_title">New Announcement Pages</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row news_row">
+            <div class="news_item">
+                <div class="news_content">
+                    <div class="news_title" style="text-align: center"></div>
+                    <div class="news_text">
+
+                        {{ include('content/_form.html.twig') }}
+                        <br>
+                        <div class="col-md-2">
+                            <a href="{{ path('user_content_index') }}" class="btn btn-primary btn-block">back to list</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

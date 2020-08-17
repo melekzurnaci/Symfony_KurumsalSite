@@ -5,24 +5,33 @@
 {% block body %}
     <br><br><br><br><br><br><br><br><br><br>
     <!-- News -->
-    <div class=" contact">
-        <div class="col-lg-8">
-            {{ include ('user/usermenu.html.twig') }}
-            <div class="section_title_container text-lg-center">
-                <div class="section_title">My Comment List</div>
+    {#    <div class=" contact">#}
+    {#        <div class="col-lg-8">#}
+    {#            {{ include ('user/usermenu.html.twig') }}#}
+    {#            <div class="section_title_container text-lg-center">#}
+    {#                <div class="section_title">My Comment List</div>#}
+    {#            </div>#}
+    {{ include ('user/usermenu.html.twig') }}
+    <div class="container">
+        <div>
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <div class="section_subtitle"></div>
+                    <div class="section_title">My Announcement</div>
+                </div>
             </div>
-
-            <div class="row news_row">
-                <div class="news_item">
-                    <div class="news_content">
-                        <div class="news_text">
-                            <!-- News Post -->
-My Contents
-                        </div>
+        </div>
+        <div class="row news_row">
+            <div class="news_item">
+                <div class="news_content">
+                    <div class="news_text">
+                        <!-- News Post -->
+                        My Contents
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <br><br>
 {% endblock %}
