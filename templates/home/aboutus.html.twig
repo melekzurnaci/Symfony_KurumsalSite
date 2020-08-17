@@ -1,0 +1,35 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}About Us{{setting[0].title}}{% endblock %}
+{% block keywords %}{{setting[0].keywords}}{% endblock %}
+{% block description %}{{setting[0].description}}{% endblock %}
+{% block body %}
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <!-- Features -->
+
+    <div class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 features_col">
+                    <div class="features_content">
+                        <div class="section_title_container">
+                            <div class="section_subtitle">{{ setting[0].title }}</div>
+                            <br>
+                            <div class="section_title"></div>
+                            <div class="section_text">
+                                {{setting[0].aboutus |raw}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="features_images clearfix">
+                        <div class="features_image_1"><img src="{{ asset ('assets') }}/images/about_features_1.jpg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock %}
