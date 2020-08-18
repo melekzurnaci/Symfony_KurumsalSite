@@ -6,28 +6,75 @@
 {% block slider %}{% include ('home/slider.html.twig')  %}{% endblock %}
 {% block body %}
 
-    <!-- Intro -->
-<div class="super_container">
-    <div class="intro">
+    <!-- News -->
+
+    <div class="news">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="intro_image text-lg-right text-center"><img src="{{ asset ('assets') }}/images/intro.png" alt=""></div>
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        {#                        <div class="section_subtitle">take a look at our</div>#}
+                        <div class="section_title">En Son Yüklenen İçerikler</div>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="intro_content">
-                        <div class="intro_title_container">
-                            <div class="intro_subtitle">take a look at our</div>
-                            <h1 class="intro_title">Buy and Sell Bitcoin</h1>
+            </div>
+            <div class="row news_row" >
+                {% for rs in newcontent %}
+                    <!-- News Item -->
+                    <div class="col-lg-4 news_col" >
+                        <div class="news_item" >
+                            <div class="news_image" >
+                                <img src="{{ asset ('uploads/images/' ~rs.image) }}"  alt="https://unsplash.com/@silverhousehd">
+                            </div>
+                            <div class="news_content">
+                                <div class="news_title">{{ rs.title }}</div>
+                                {#                            <div class="news_text">#}
+                                {#                                <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci.</p>#}
+                                {#                            </div>#}
+                            </div>
+                            <div class="news_button"><a a href="{{ path('content_show',{'id': rs.id}) }}">read more</a></div>
                         </div>
-                        <div class="intro_text">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit.Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobo rtis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit.</p>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro -->
+    <div class="super_container">
+        <div class="intro">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card-header">Duyurular</div>
+                        <div class="card-body">
+                            <div class="card bg-light mb-3" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Light card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div class="news_button"> <a href="#" >Read More</a> </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="link_button intro_button"><a href="#">read more</a></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card-header">Etkinlikler</div>
+                        <div class="card-body">
+                            <div class="card bg-light mb-3" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Light card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div class="news_button"> <a href="#" >Read More</a> </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Services -->
@@ -38,75 +85,21 @@
                 <div class="col">
                     <!-- Testimonials Slider -->
 
+
                     <div class="services_slider_container">
                         <div class="owl-carousel owl-theme services_slider">
-
-                            <!-- Services Item -->
-                            <div class="owl-item">
-                                <div class="services_item d-flex flex-column align-items-center justify-content-center">
-                                    <div class="services_item_bg"></div>
-                                    <div class="services_icon"><img class="svg" src="{{ asset ('assets') }}/images/services_1.svg" alt=""></div>
-                                    <div class="services_title">Exchange Fiat for Crypto</div>
-                                    <p class="services_text">Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta.</p>
-                                    <div class="services_link"><a href="#">Read More</a></div>
+                            {% for rs in announcements %}
+                                <!-- Services Item -->
+                                <div class="owl-item">
+                                    <div class="services_item d-flex flex-column align-items-center justify-content-center" style="height: 15cm ">
+                                        <div class="services_item_bg"></div>
+                                        <div class="services_icon"  style="height:7cm ; width:7cm"><img class="svg" src="{{ asset ('uploads/images/' ~rs.image) }}"  alt=""></div>
+                                        <div class="services_title">{{rs.title}}</div>
+                                        <p class="services_text">{{ rs.description }}</p>
+                                        <div class="services_link"><a href="{{ path('content_show',{'id': rs.id}) }}">Read More</a></div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Services Item -->
-                            <div class="owl-item">
-                                <div class="services_item d-flex flex-column align-items-center justify-content-center">
-                                    <div class="services_item_bg"></div>
-                                    <div class="services_icon"><img class="svg" src="{{ asset ('assets') }}/images/services_2.svg" alt=""></div>
-                                    <div class="services_title">Exchange Fiat for Crypto</div>
-                                    <p class="services_text">Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta.</p>
-                                    <div class="services_link"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-
-                            <!-- Services Item -->
-                            <div class="owl-item">
-                                <div class="services_item d-flex flex-column align-items-center justify-content-center">
-                                    <div class="services_item_bg"></div>
-                                    <div class="services_icon"><img class="svg" src="{{ asset ('assets') }}/images/services_3.svg" alt=""></div>
-                                    <div class="services_title">Exchange Fiat for Crypto</div>
-                                    <p class="services_text">Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta.</p>
-                                    <div class="services_link"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-
-                            <!-- Services Item -->
-                            <div class="owl-item">
-                                <div class="services_item d-flex flex-column align-items-center justify-content-center">
-                                    <div class="services_item_bg"></div>
-                                    <div class="services_icon"><img class="svg" src="{{ asset ('assets') }}/images/services_1.svg" alt=""></div>
-                                    <div class="services_title">Exchange Fiat for Crypto</div>
-                                    <p class="services_text">Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta.</p>
-                                    <div class="services_link"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-
-                            <!-- Services Item -->
-                            <div class="owl-item">
-                                <div class="services_item d-flex flex-column align-items-center justify-content-center">
-                                    <div class="services_item_bg"></div>
-                                    <div class="services_icon"><img class="svg" src="{{ asset ('assets') }}/images/services_2.svg" alt=""></div>
-                                    <div class="services_title">Exchange Fiat for Crypto</div>
-                                    <p class="services_text">Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta.</p>
-                                    <div class="services_link"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-
-                            <!-- Services Item -->
-                            <div class="owl-item">
-                                <div class="services_item d-flex flex-column align-items-center justify-content-center">
-                                    <div class="services_item_bg"></div>
-                                    <div class="services_icon"><img class="svg" src="{{ asset ('assets') }}/images/services_3.svg" alt=""></div>
-                                    <div class="services_title">Exchange Fiat for Crypto</div>
-                                    <p class="services_text">Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta.</p>
-                                    <div class="services_link"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-
+                            {% endfor %}
                         </div>
 
                         <div class="services_nav services_prev d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('assets') }}/images/arrow_l.png" alt=""></div>
@@ -171,70 +164,6 @@
         </div>
     </div>
 
-    <!-- News -->
 
-    <div class="news">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="section_title_container text-center">
-                        <div class="section_subtitle">take a look at our</div>
-                        <div class="section_title">Latest News in Crypto</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row news_row">
-
-                <!-- News Item -->
-                <div class="col-lg-4 news_col">
-                    <div class="news_item">
-                        <div class="news_image">
-                            <img src="{{ asset ('assets') }}/images/news_1.jpg" alt="https://unsplash.com/@silverhousehd">
-                        </div>
-                        <div class="news_content">
-                            <div class="news_title">New Regulations on the Crypto Market</div>
-                            <div class="news_text">
-                                <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci.</p>
-                            </div>
-                        </div>
-                        <div class="news_button"><a href="news.html">read more</a></div>
-                    </div>
-                </div>
-
-                <!-- News Item -->
-                <div class="col-lg-4 news_col">
-                    <div class="news_item">
-                        <div class="news_image">
-                            <img src="{{ asset ('assets') }}/images/news_2.jpg" alt="https://unsplash.com/@silverhousehd">
-                        </div>
-                        <div class="news_content">
-                            <div class="news_title">Good News from the Crypto World</div>
-                            <div class="news_text">
-                                <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci.</p>
-                            </div>
-                        </div>
-                        <div class="news_button"><a href="news.html">read more</a></div>
-                    </div>
-                </div>
-
-                <!-- News Item -->
-                <div class="col-lg-4 news_col">
-                    <div class="news_item">
-                        <div class="news_image">
-                            <img src="{{ asset ('assets') }}/images/news_3.jpg" alt="https://unsplash.com/@silverhousehd">
-                        </div>
-                        <div class="news_content">
-                            <div class="news_title">Bitcoin price goes to the Moon with new laws</div>
-                            <div class="news_text">
-                                <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci.</p>
-                            </div>
-                        </div>
-                        <div class="news_button"><a href="news.html">read more</a></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
-</div>
 {% endblock %}

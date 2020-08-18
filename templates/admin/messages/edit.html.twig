@@ -1,0 +1,26 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h1>Edit Messages</h1>
+
+                    {{ include('admin/messages/_form.html.twig', {'button_label': 'Update' }) }}
+                    <br>
+                    <div class="col-md-2">
+                        <a href="{{ path('admin_messages_index') }}" class="btn btn-primary btn-block">Back to list</a>
+                    </div>
+                    <br>
+                    {{ include('admin/messages/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
