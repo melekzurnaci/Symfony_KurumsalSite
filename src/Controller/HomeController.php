@@ -8,6 +8,7 @@ use App\Entity\Content;
 use App\Form\Admin\MessagesType;
 use App\Repository\ContentRepository;
 use App\Repository\SettingRepository;
+use phpDocumentor\Reflection\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ImageRepository;
@@ -31,10 +32,11 @@ class HomeController extends AbstractController
     public function index(SettingRepository $settingRepository, ContentRepository $contentRepository)
     {
         $setting=$settingRepository->findAll();
-        $slider=$contentRepository->findBy([],['title'=>'ASC'],5);
-        $announcements=$contentRepository->findBy([],['title'=>'DESC'],5);
-        $newcontent=$contentRepository->findBy([],['title'=>'DESC'],3);
-
+        $slider=$contentRepository->findBy([],['id'=>'DESC'],5);
+        $announcements=$contentRepository->findBy(['type'=>'Haber'],['title'=>'DESC'],5);
+        $newcontent=$contentRepository->findBy(['type'=>'Haber'],['id'=>'DESC'],3);
+        $etkinlik=$contentRepository->findBy(['type'=>'Etkinlik'],['id'=>'DESC'],3);
+        $duyurular=$contentRepository->findBy(['type'=>'Duyuru'],['id'=>'DESC'],3);
 
         #dump($slider);
         #die();
@@ -45,19 +47,23 @@ class HomeController extends AbstractController
             'slider'=>$slider,
             'announcements'=>$announcements,
             'newcontent'=>$newcontent,
+            'etkinlik'=>$etkinlik,
+            'duyurular'=>$duyurular,
         ]);
     }
 
     /**
      * @Route("/content/{id}", name="content_show", methods={"GET"})
      */
-    public function show(Content $content,$id, ImageRepository $imageRepository): Response
+    public function show(Content $content,$id,SettingRepository $settingRepository, ImageRepository $imageRepository): Response
     {
+        $setting=$settingRepository->findAll();
        $images=$imageRepository->findBy(['content'=>$id]);
 //        $comments=$commentRepository->findBy(['contentid'=>$id, 'status'=>'True']);
         return $this->render('home/contentshow.html.twig', [
             'content' => $content,
             'images' => $images,
+            'setting'=>$setting,
 //            'comments' => $comments,
         ]);
     }
@@ -70,6 +76,43 @@ class HomeController extends AbstractController
     {
         $setting=$settingRepository->findAll();
         return $this->render('home/aboutus.html.twig', [
+            'setting' => $setting,
+        ]);
+    }
+    /**
+     * @Route("/haberler", name="home_haberler", methods={"GET","POST"})
+     */
+    public function haberler(SettingRepository $settingRepository,ContentRepository $contentRepository): Response
+    {
+        $haberler=$contentRepository->findBy(['type'=>'Haber'],['id'=>'DESC']);
+        $setting=$settingRepository->findAll();
+        return $this->render('home/haberler.html.twig', [
+            'haberler' => $haberler,
+            'setting' => $setting,
+        ]);
+    }
+    /**
+     * @Route("/duyurular", name="home_duyurular", methods={"GET","POST"})
+     */
+    public function duyurular(SettingRepository $settingRepository,ContentRepository $contentRepository): Response
+    {
+        $duyurular=$contentRepository->findBy(['type'=>'Duyuru'],['id'=>'DESC']);
+        $setting=$settingRepository->findAll();
+        return $this->render('home/duyurular.html.twig', [
+            'duyurular' => $duyurular,
+            'setting' => $setting,
+        ]);
+    }
+
+    /**
+     * @Route("/etkinlikler", name="home_etkinlikler", methods={"GET","POST"})
+     */
+    public function etkinlikler(SettingRepository $settingRepository,ContentRepository $contentRepository): Response
+    {
+        $etkinlikler=$contentRepository->findBy(['type'=>'Etkinlik'],['id'=>'DESC']);
+        $setting=$settingRepository->findAll();
+        return $this->render('home/Etkinlikler.html.twig', [
+            'etkinlikler' => $etkinlikler,
             'setting' => $setting,
         ]);
     }

@@ -14,7 +14,7 @@
                 <div class="col">
                     <div class="section_title_container text-center">
                         {#                        <div class="section_subtitle">take a look at our</div>#}
-                        <div class="section_title">En Son Yüklenen İçerikler</div>
+                        <div class="section_title">En Son Yüklenen Haberler</div>
                     </div>
                 </div>
             </div>
@@ -50,25 +50,32 @@
                     <div class="col-sm-6">
                         <div class="card-header">Duyurular</div>
                         <div class="card-body">
-                            <div class="card bg-light mb-3" >
-                                <div class="card-body">
-                                    <h5 class="card-title">Light card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="news_button"> <a href="#" >Read More</a> </div>
+                            {% for rs in duyurular %}
+                                <div class="card bg-light mb-3" >
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ rs.title }}</h5>
+                                        {#                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
+                                        <div class="news_button"> <a href="{{ path('content_show',{'id': rs.id}) }}" >Read More</a> </div>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="card-header">Etkinlikler</div>
                         <div class="card-body">
-                            <div class="card bg-light mb-3" >
-                                <div class="card-body">
-                                    <h5 class="card-title">Light card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="news_button"> <a href="#" >Read More</a> </div>
+                            {% for rs in etkinlik %}
+                                <div class="card bg-light mb-3" >
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ rs.title }}</h5>
+                                        {#                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
+                                        <div class="news_button"> <a href="{{ path('content_show',{'id': rs.id}) }}" >Read More</a> </div>
+                                    </div>
+
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -115,54 +122,6 @@
 
     <!-- Info -->
 
-    <div class="info">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="section_title_container text-center">
-                        <div class="section_subtitle">take a look at our</div>
-                        <div class="section_title">A simple trading system</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row info_row">
-
-                <!-- Info Item -->
-                <div class="col-lg-4 info_col">
-                    <div class="info_item text-center">
-                        <div class="info_image"><img src="{{ asset ('assets') }}/images/info_1.png" alt=""></div>
-                        <div class="info_title">Create your wallet</div>
-                        <div class="info_text">
-                            <p>Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Info Item -->
-                <div class="col-lg-4 info_col">
-                    <div class="info_item text-center">
-                        <div class="info_image"><img src="{{ asset ('assets') }}/images/info_2.png" alt=""></div>
-                        <div class="info_title">Make payments</div>
-                        <div class="info_text">
-                            <p>Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Info Item -->
-                <div class="col-lg-4 info_col">
-                    <div class="info_item text-center">
-                        <div class="info_image"><img src="{{ asset ('assets') }}/images/info_3.png" alt=""></div>
-                        <div class="info_title">Buy or sell orders</div>
-                        <div class="info_text">
-                            <p>Sed ut iaculis elit, quis varius mauris. Integer ut ultric ies orci, lobortis egesta s sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
 
 
     </div>

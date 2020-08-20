@@ -18,6 +18,13 @@ class Content1Type extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('type', ChoiceType::class,[
+                'choices' => [
+                    'Haber' => 'Haber',
+                    'Duyuru' => 'Duyuru',
+                    'Etkinlik' => 'Etkinlik',
+                ],
+            ])
             ->add('category', EntityType::class,[
                 'class' => Category::class,
                 'choice_label' => 'title',

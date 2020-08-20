@@ -3,14 +3,16 @@
 {% block title %}{{ app.user.name }}Profile{% endblock %}
 
 {% block body %}
-    <br><br><br><br><br><br><br><br><br><br>
 
+    <br><br><br><br><br><br><br><br><br><br>
     <!-- News -->
     <div class=" contact">
+
         <div class="section_title_container text-lg-center">
             <div class="section_title">My User Profile</div>
+            {{ include ('user/usermenu.html.twig') }}
         </div>
-        {{ include ('user/usermenu.html.twig') }}
+{#        {{ include ('user/usermenu.html.twig') }}#}
         <div class="row news_row">
             <div class="news_item">
                 <div class="news_content">

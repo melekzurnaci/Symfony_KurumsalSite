@@ -1,0 +1,74 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Haberler | {{setting[0].title}}{% endblock %}
+{% block keywords %}{{setting[0].keywords}}{% endblock %}
+{% block description %}{{setting[0].description}}{% endblock %}
+
+{% block body %}
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windowFeatures) { window.open( windowURL, windowName, windowFeatures);
+        }
+    </script>
+    <div class="news">
+        <div class="home" style=" height: 55px"></div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg news_col">
+                    {% for rs in haberler %}
+                        <div class="news_image"><img src="{{ asset ('uploads/images/' ~rs.image) }}" alt="" class="rounded float-right" style=" margin: 15px;
+  border: 1px solid #ccc;
+  float: end;
+  width: 200px;
+ justify-content: flex-end;" ></div>
+                    <div class="news_post">
+
+                            <div class="news_content">
+                                <div class="news_title">{{ rs.title }}</div>
+                              <div class="ne"></div>
+
+                            </div>
+                            <div class="news_button"><a href="{{ path('content_show',{'id': rs.id}) }}">read more</a></div>
+
+                    </div>
+                        <br><br>
+                    {% endfor %}
+                </div>
+
+
+                {#                <!-- News Post -->#}
+                {#                <div class="col-lg-8 news_col">#}
+                {#                    <div class="news_post">#}
+                {#                        <div class="super_container">#}
+
+                {#                            <div class="home" style=" height: 80px"></div>#}
+                {#                            <div class="contact">#}
+                {#                                <div class="container">#}
+                {#                                    <div class="row">#}
+                {#                                        <div class="col-sm-8">#}
+                {#                                            <div class="card-header">Haberler</div>#}
+                {#                                            <div class="card-body">#}
+                {#                                                {% for rs in haberler %}#}
+                {#                                                    <div class="card bg-light mb-3" >#}
+
+                {#                                                        <div class="card-body">#}
+                {#                                                            <h5 class="card-title">{{ rs.title }}</h5>#}
+                {#                                                            #}{#                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
+                {#                                                            <div class="news_button"> <a href="{{ path('content_show',{'id': rs.id}) }}" >Read More</a> </div>#}
+                {#                                                        </div>#}
+                {#                                                    </div>#}
+                {#                                                {% endfor %}#}
+                {#                                            </div>#}
+                {#                                        </div>#}
+                {#                                    </div>#}
+
+                {#                                </div>#}
+
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Content;
 use App\Form\Content1Type;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
+use App\Repository\SettingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,22 +22,25 @@ class ContentController extends AbstractController
     /**
      * @Route("/", name="user_content_index", methods={"GET"})
      */
-    public function index(ContentRepository $contentRepository): Response
+    public function index(ContentRepository $contentRepository,SettingRepository $settingRepository): Response
     {
         $user = $this->getUser();
+        $setting=$settingRepository->findAll();
         return $this->render('content/index.html.twig', [
-            'contents' => $contentRepository->findBy(['userid'=>$user->getId()]),
+            'setting'=>$setting,
+            'contents' => $contentRepository->findBy(['userid'=>$user->getId()],['id'=>'DESC']),
         ]);
     }
 
     /**
      * @Route("/new", name="user_content_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,SettingRepository $settingRepository): Response
     {
         $content = new Content();
         $form = $this->createForm(Content1Type::class, $content);
         $form->handleRequest($request);
+        $setting=$settingRepository->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -68,6 +72,7 @@ class ContentController extends AbstractController
 
         return $this->render('content/new.html.twig', [
             'content' => $content,
+            'setting'=>$setting,
             'form' => $form->createView(),
         ]);
     }
@@ -75,20 +80,23 @@ class ContentController extends AbstractController
     /**
      * @Route("/{id}", name="user_content_show", methods={"GET"})
      */
-    public function show(Content $content): Response
+    public function show(Content $content,SettingRepository $settingRepository): Response
     {
+        $setting=$settingRepository->findAll();
         return $this->render('content/show.html.twig', [
             'content' => $content,
+            'setting'=>$setting,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="user_content_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Content $content): Response
+    public function edit(Request $request, Content $content,SettingRepository $settingRepository): Response
     {
         $form = $this->createForm(Content1Type::class, $content);
         $form->handleRequest($request);
+        $setting=$settingRepository->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var file $file */
@@ -116,6 +124,7 @@ class ContentController extends AbstractController
         return $this->render('content/edit.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
+            'setting'=>$setting,
         ]);
     }
 
@@ -126,7 +135,7 @@ class ContentController extends AbstractController
     /**
      * @Route("/{id}", name="user_content_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Content $content): Response
+    public function delete(Request $request, Content $content,SettingRepository $settingRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$content->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
