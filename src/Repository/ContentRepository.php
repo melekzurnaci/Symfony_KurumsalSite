@@ -47,4 +47,19 @@ class ContentRepository extends ServiceEntityRepository
         ;
     }
     */
+
+//    //******left join with sql********
+//    public function getAllContents(): array
+//    {
+//        $conn=$this->getEntityManager()->getConnection();
+//        $sql='
+//            SELECT d.*,c.title as catname,u.name,u.surname FROM content d
+//            JOIN type c ON c.id=d.type_id
+//            JOIN user u ON u.id=d.userid
+//            ORDER BY c.title ASC
+//        ';
+//        $stmt=$conn->prepare($sql);
+//        $stmt->execute();
+//        return $stmt->fetchAll();
+//    }
 }

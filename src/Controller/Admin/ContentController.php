@@ -24,6 +24,16 @@ class ContentController extends AbstractController
             'contents' => $contentRepository->findAll(),
         ]);
     }
+//    /**
+//     * @Route("/", name="admin_content_index", methods={"GET"})
+//     */
+//    public function index(ContentRepository $contentRepository): Response
+//    {
+//        $contents=$contentRepository->getAllContents();
+//        return $this->render('admin/content/index.html.twig', [
+//            'contents' => $contents,
+//        ]);
+//    }
 
     /**
      * @Route("/new", name="admin_content_new", methods={"GET","POST"})

@@ -57,6 +57,11 @@ class Comment
      */
     private $rate;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $contentid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Comment
     public function setRate(?int $rate): self
     {
         $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getContentid(): ?int
+    {
+        return $this->contentid;
+    }
+
+    public function setContentid(?int $contentid): self
+    {
+        $this->contentid = $contentid;
 
         return $this;
     }

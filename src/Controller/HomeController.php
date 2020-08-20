@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Form\Admin\ChoiceType;
 use APP\Entity\Setting;
 use App\Entity\Admin\Messages;
 use App\Entity\Content;
 use App\Form\Admin\MessagesType;
+use App\Repository\Admin\CommentRepository;
 use App\Repository\ContentRepository;
 use App\Repository\SettingRepository;
 use phpDocumentor\Reflection\Type;
@@ -55,16 +57,17 @@ class HomeController extends AbstractController
     /**
      * @Route("/content/{id}", name="content_show", methods={"GET"})
      */
-    public function show(Content $content,$id,SettingRepository $settingRepository, ImageRepository $imageRepository): Response
+    public function show(Content $content,$id,SettingRepository $settingRepository, ImageRepository $imageRepository, CommentRepository $commentRepository): Response
     {
         $setting=$settingRepository->findAll();
-       $images=$imageRepository->findBy(['content'=>$id]);
-//        $comments=$commentRepository->findBy(['contentid'=>$id, 'status'=>'True']);
+        $images=$imageRepository->findBy(['content'=>$id]);
+        $comments=$commentRepository->findBy(['contentid'=>$id, 'status'=>'True']);
+
         return $this->render('home/contentshow.html.twig', [
             'content' => $content,
             'images' => $images,
-            'setting'=>$setting,
-//            'comments' => $comments,
+            'setting'=> $setting,
+            'comments' => $comments,
         ]);
     }
 

@@ -53,96 +53,82 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">{{ content.title }} </h3>
-                                <p class="card-text">{{ content.detail }} </p>
+                                <p class="card-text">{{ content.detail | raw }} </p>
                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                             <img class="card-img-bottom" src="{{ asset ('uploads/images/' ~content.image) }}" alt="Card image cap">
                         </div>
-{#                        <table class="table" style="text-align: center">#}
-{#                            <tbody>#}
-{#                            <tr>#}
-{#                                <th>Title</th>#}
-{#                                <td>{{ content.title }}</td>#}
-{#                            </tr>#}
-{#                            <tr>#}
-{#                                <th>Description</th>#}
-{#                                <td>{{ content.detail | raw }}</td>#}
-{#                            </tr>#}
-{#                            </tbody>#}
-{#                        </table>#}
                     </div>
                 </div>
             </div>
-{#            <div class="row news_row">#}
-{#                <!-- News Item -->#}
-{#                <div class="col-lg-6 news_col" style="left: 300px">#}
-{#                    <div class="news_item" style="text-align: center; top: 20px">#}
+            <div class="row news_row">
+                <!-- News Item -->
+                <div class="col-lg-6 " style="left: 250px">
+                    <div class="news_item" style="text-align: center; top: 20px">
 {#                        <div class="news_image" >#}
 {#                            <br><br>#}
 {#                            <img src="{{ asset ('uploads/images/' ~content.image) }}" alt="">#}
 {#                        </div>#}
-{#                        <div class="news_content">#}
-{#                            <div class="news_title"></div>#}
-{#                            <div class="news_text" >#}
-{#                                <p>#}
-{#                                    {% for rs in comments %}#}
-{#                                        {{ rs.subject }} [Rate:{{ rs.rate }}]<br>#}
-{#                                        {{ rs.comment }}<br>#}
-{#                                    {% endfor %}#}
-{#                                    {% if app.user %}#}
-{#                                    {{ include ('messages.html.twig') }}#}
-{#                                <div class="contact_form_container">#}
-
-{#                                    <form name="comment" action="{{ path('user_new_comment',{'id': content.id}) }}" method="post" class="contact_form">#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-md-12" >#}
-
-{#                                                <h4>Write your comment us</h4>#}
-{#                                                <input type="text" id="comment_name" name="comment[name]" class="input_item" placeholder="Your Name" required="required">#}
-{#                                                <br><br>#}
-{#                                            </div>#}
-{#                                            <br>#}
-{#                                            <div class="col-md-12">#}
-{#                                                <input type="email" id="comment_email" name="comment[email]"class="input_item" placeholder="Your E-mail" required="required">#}
-{#                                                <br><br>#}
-{#                                            </div>#}
-{#                                            <div class="col-md-12">#}
-{#                                                <input type="text" id="comment_subject" name="comment[subject]"class="input_item" placeholder="Subject" style="height:40px;">#}
-{#                                                <br><br>#}
-{#                                            </div><br><br>#}
-{#                                            <div class="col-md-12">#}
-{#                                                <select id="comment_rate" name="[comment_rate]" class="input_item">#}
-{#                                                    <option>5</option>#}
-{#                                                    <option>4</option>#}
-{#                                                    <option>3</option>#}
-{#                                                    <option>2</option>#}
-{#                                                    <option>1</option>#}
-{#                                                </select>#}
-{#                                                <br><br>#}
-{#                                            </div><br><br>#}
-{#                                            <div class="col-md-12">#}
-{#                                                <textarea id="comment_comment" name="comment[comment]" maxlength="255" class="input_item" placeholder=" Your Comment" required="required" data-error="Please, write us your comment."></textarea>#}
-{#                                                <br><br>#}
-{#                                            </div>#}
-{#                                            <input type="hidden" name="token" value="{{csrf_token('comment')}}" />#}
-{#                                            <div class="col-md-12">#}
-{#                                                <button id="contact_btn" type="submit" class="btn btn-primary" value="Submit">Send Comment</button>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </form>#}
-
-{#                                        <li>#}
-{#                                            <a href="/loginuser"><i class="login">If you want to add comment please login</i></a>#}
-{#                                        </li>#}
-
-{#                                </div>#}
-{#                                </p>#}
-{#                            </div>#}
-{#                        </div>#}
+                        <div class="news_content">
+                            <div class="news_title"></div>
+                            <div class="news_text" >
+                                <p>
+                                    {% for rs in comments %}
+                                        {{ rs.subject }} [Rate:{{ rs.rate }}]<br>
+                                        {{ rs.comment }}<br>
+                                    {% endfor %}
+                                    {% if app.user %}
+                                    {{ include ('messages.html.twig') }}
+                                <div class="contact_form_container">
+                                    <form name="comment"  action="{{ path('user_new_comment',{'id': content.id}) }}" method="post" class="contact_form">
+                                        <div class="row">
+                                            <div class="col-md-12" >
+                                                <h4>Write your comment us</h4>
+                                                <input type="text" id="comment_name" name="comment[name]" class="input_item" placeholder="Your Name" required="required">
+                                                <br><br>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-12">
+                                                <input type="email" id="comment_email" name="comment[email]"class="input_item" placeholder="Your E-mail" required="required">
+                                                <br><br>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="text" id="comment_subject" name="comment[subject]"class="input_item" placeholder="Subject" style="height:40px;">
+                                                <br><br>
+                                            </div><br><br>
+                                            <div class="col-md-12">
+                                                <select id="comment_rate" type="integer" name="[comment_rate]" class="input_item">
+                                                    <option>5</option>
+                                                    <option>4</option>
+                                                    <option>3</option>
+                                                    <option>2</option>
+                                                    <option>1</option>
+                                                </select>
+                                                <br><br>
+                                            </div><br><br>
+                                            <div class="col-md-12">
+                                                <textarea id="comment_comment" name="comment[comment]" maxlength="255" class="input_item" placeholder=" Your Comment" required="required" data-error="Please, write us your comment."></textarea>
+                                                <br><br>
+                                            </div>
+                                            <input type="hidden" name="token" value="{{csrf_token('comment')}}" />
+                                            <div class="col-md-12">
+                                                <button id="contact_btn" type="submit" class="btn btn-primary" value="Submit">Send Comment</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% else %}
+                                        <li>
+                                            <a href="/loginuser"><i class="login">If you want to add comment please login</i></a>
+                                        </li>
+                                    {% endif %}
+                                </div>
+                                </p>
+                            </div>
+                        </div>
 {#                        <div class="news_button" style="color: #000000">Detail Information</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!-- ============================================================== -->

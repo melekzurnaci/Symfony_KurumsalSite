@@ -6,6 +6,8 @@ use App\Entity\Admin\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class CommentType extends AbstractType
 {
@@ -14,11 +16,14 @@ class CommentType extends AbstractType
         $builder
             ->add('subject')
             ->add('comment')
-            ->add('status')
+            ->add('status', ChoiceType::class,[
+                'choices' => [
+                    'New' => 'New',
+                    'True' => 'True',
+                    'False' => 'False'],
+            ])
             ->add('ip')
             ->add('userid')
-            ->add('created_at')
-            ->add('updated_at')
             ->add('rate')
         ;
     }

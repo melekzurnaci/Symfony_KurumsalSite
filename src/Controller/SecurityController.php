@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SettingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,14 +34,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/loginuser", name="login_user")
      */
-    public function loginuser(AuthenticationUtils $authenticationUtils): Response
+    public function loginuser(AuthenticationUtils $authenticationUtils,SettingRepository $settingRepository): Response
     {
+        $setting = $settingRepository->findAll();
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/userlogin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/userlogin.html.twig', ['last_username' => $lastUsername, 'error' => $error,'setting' => $setting,]);
     }
 
 

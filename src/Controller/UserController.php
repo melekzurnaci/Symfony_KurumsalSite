@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Admin\Comment;
 use App\Entity\User;
+use App\Form\Admin\ChoiceType;
+use App\Form\Admin\CommentType;
 use App\Form\UserType;
+use App\Repository\Admin\CommentRepository;
 use App\Repository\SettingRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,9 +28,9 @@ class UserController extends AbstractController
      */
     public function index(SettingRepository $settingRepository): Response
     {
-        $setting=$settingRepository->findAll();
-        return $this->render('user/show.html.twig',[
-            'setting'=>$setting,
+        $setting = $settingRepository->findAll();
+        return $this->render('user/show.html.twig', [
+            'setting' => $setting,
 
         ]);
     }
@@ -34,10 +38,17 @@ class UserController extends AbstractController
     /**
      * @Route("/comments", name="user_comments", methods={"GET"})
      */
-    public function comments(): Response
+    public function comments(CommentRepository $commentRepository,SettingRepository $settingRepository): Response
     {
-        return $this->render('user/comments.html.twig');
+        $setting = $settingRepository->findAll();
+        $user=$this->getUser();
+        $comments=$commentRepository->getAllCommentsUser($user->getId());
+        return $this->render('user/comments.html.twig',[
+            'comments'=>$comments,
+            'setting' => $setting,
+        ]);
     }
+
 
     /**
      * @Route("/announcements", name="user_announcements", methods={"GET"})
@@ -127,8 +138,8 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, $id, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {   //edit işleminde  id numarasının tarayıcıdan değiştrilerek başka kullanıcı bilgilerine erişilmesini engellemiş olduk.
-        $user=$this->getUser(); //GET LOGİN USER DATA
-        if($user->getId() != $id){
+        $user = $this->getUser(); //GET LOGİN USER DATA
+        if ($user->getId() != $id) {
             return $this->redirectToRoute('home');
         }
 
@@ -189,5 +200,34 @@ class UserController extends AbstractController
     private function generateUniqueFileName()
     {
         return md5(uniqid());
+    }
+
+    /**
+     * @Route("/newcomment/{id}", name="user_new_comment", methods={"GET","POST"})
+     */
+    public function newcomment(Request $request,$id): Response
+    {
+        $comment = new Comment();
+        $form = $this->createForm(UserType::class, $comment);
+        $form->handleRequest($request);
+        $submittedToken=$request->request->get('token'); //Submit token ile key tooken oluşturuyoruz
+
+        if ($form->isSubmitted()) {
+            if($this->isCsrfTokenValid('comment', $submittedToken)) {
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $comment->setStatus('New');
+                $comment->setIp($_SERVER['REMOTE_ADDR']);
+                $comment->setContentid($id);
+                $user=$this->getUser();
+                $comment->setUserid($user->getId());
+
+                $entityManager->persist($comment);
+                $entityManager->flush();
+                $this->addFlash('success', 'Your comment has been sent successfully');
+                return $this->redirectToRoute('content_show', ['id' => $id]);
+            }
+        }
+        return $this->redirectToRoute('content_show', ['id' => $id]);
     }
 }

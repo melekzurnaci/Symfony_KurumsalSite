@@ -47,4 +47,34 @@ class CommentRepository extends ServiceEntityRepository
         ;
     }
     */
+    //******left join with sql********
+    public function getAllComments(): array
+    {
+        $conn=$this->getEntityManager()->getConnection();
+        $sql='
+        SELECT C.*,u.name,u.surname,d.title FROM comment c
+        JOIN user u ON u.id=c.userid
+        JOIN content d ON d.id=c.contentid
+        ORDER BY c.id DESC
+        ';
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    //******left join with doctrine********
+    public function getAllCommentsUser($userid): array
+    {
+        $qb= $this->createQueryBuilder('c')
+            ->select('c.id,c.subject,c.comment,c.rate,c.created_at,c.status,c.contentid,d.title')
+            ->leftJoin('App\Entity\Content', 'd', 'WITH','d.id=c.contentid')
+
+            ->where('c.userid = :userid')
+            ->setParameter('userid', $userid)
+            ->orderBy('c.id','DESC');
+        $query=$qb->getQuery();
+        return $query->execute();
+    }
+
+
 }

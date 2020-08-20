@@ -22,8 +22,8 @@
                             <th>Status</th>
                             <th>Ip</th>
                             <th>Note</th>
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+{#                            <th>Created_at</th>#}
+{#                            <th>Updated_at</th>#}
                             <th>actions</th>
                         </tr>
                         </thead>
@@ -37,13 +37,16 @@
                                 <td>{{ message.status }}</td>
                                 <td>{{ message.ip }}</td>
                                 <td>{{ message.note }}</td>
-                                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ message.updatedAt ? message.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+{#                                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                                <td>{{ message.updatedAt ? message.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
                                 <td>
                                     <a href="{{ path('admin_messages_show', {'id': message.id}) }}" class="btn btn-primary btn-block">Show</a>
                                 </td>
                                 <td>
                                     <a href="{{ path('admin_messages_edit', {'id': message.id}) }}" class="btn btn-success">Edit</a>
+                                </td>
+                                <td>
+                                    {{ include('admin/messages/_delete_form.html.twig') }}
                                 </td>
                             </tr>
                         {% else %}

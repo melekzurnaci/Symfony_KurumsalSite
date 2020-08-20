@@ -1,11 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}New Comment{% endblock %}
 
 {% block body %}
-    <h1>Create new Comment</h1>
+
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+            <h1>Create new Comment</h1>
 
     {{ include('admin/comment/_form.html.twig') }}
-
-    <a href="{{ path('admin_comment_index') }}">back to list</a>
+                <br>
+                <div class="col-md-2">
+                    <a href="{{ path('admin_comment_index') }}" class="btn btn-primary btn-block">back to list</a>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
